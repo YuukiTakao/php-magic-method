@@ -12,15 +12,11 @@ jobs:
     working_directory: ~/repo
 
     steps:
-      - run: # start-up chromedriver in the background
-          command: chromedriver
-          background: true
       - checkout
 
       - run: sudo apt update
       - run: sudo apt upgrade
       - run: sudo apt install -y git libgmp3-dev libmcrypt-dev libxml2-dev libmcrypt-dev
-      - run: sudo apt install default-mysql-client
       - run: sudo ln -s /usr/include/x86_64-linux-gnu/gmp.h /usr/include/gmp.h
       - run: sudo docker-php-ext-install gmp xml mbstring pdo tokenizer dom pdo_mysql
       # Download and cache dependencies
@@ -39,6 +35,5 @@ jobs:
           key: v1-dependencies-{{ checksum "composer.json" }}
 
       # run tests!
-      - run: mv ./tests/.env.circle_ci ./tests/.env
       - run: vendor/bin/phpunit -d memory_limit=512M --coverage-clover=coverage.xml
       # - run: bash <(curl -s https://codecov.io/bash)
