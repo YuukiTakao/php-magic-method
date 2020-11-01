@@ -15,7 +15,7 @@ class MagicMethod
 
     public function __set($property, $value)
     {
-        return 'call __set method.';
+        $this->result = 'call __set method.';
     }
 
     public function __call($method, $arguments)
@@ -35,7 +35,6 @@ class MagicMethod
 
     public function __isset($property)
     {
-        var_dump('hello isset');
         $this->result = 'call __isset method.';
     }
 }
