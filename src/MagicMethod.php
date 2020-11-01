@@ -6,6 +6,8 @@ namespace App;
 
 class MagicMethod
 {
+    public $result;
+
     public function __get($property)
     {
         return 'call __get method.';
@@ -29,5 +31,11 @@ class MagicMethod
     public function __invoke()
     {
         return 'call __invoke method.';
+    }
+
+    public function __isset($property)
+    {
+        var_dump('hello isset');
+        $this->result = 'call __isset method.';
     }
 }

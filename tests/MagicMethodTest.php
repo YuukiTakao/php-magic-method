@@ -39,4 +39,10 @@ class MagicMethodTest extends TestCase
         $result = $this->magic_method;
         $this->assertEquals('call __invoke method.', $result());
     }
+
+    public function testMagicIsset()
+    {
+        isset($this->magic_method->hoge);
+        $this->assertEquals('call __isset method.', $this->magic_method->result);
+    }
 }
