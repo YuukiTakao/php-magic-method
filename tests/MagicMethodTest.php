@@ -22,6 +22,12 @@ class MagicMethodTest extends TestCase
         $this->assertEquals('call __get method.', $result);
     }
 
+    public function testMagicSet()
+    {
+        $this->magic_method->hoge = 'hogehoge';
+        $this->assertEquals('call __set method.', $this->magic_method->result);
+    }
+
     public function testMagicCall()
     {
         $result = $this->magic_method->hoge();
@@ -38,5 +44,11 @@ class MagicMethodTest extends TestCase
     {
         $result = $this->magic_method;
         $this->assertEquals('call __invoke method.', $result());
+    }
+
+    public function testMagicIsset()
+    {
+        isset($this->magic_method->hoge);
+        $this->assertEquals('call __isset method.', $this->magic_method->result);
     }
 }
